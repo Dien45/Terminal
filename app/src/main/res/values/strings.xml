@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Terminal</string>
+    <string name="key_esc">ESC</string>
+    <string name="key_tab">TAB</string>
+    <string name="key_ctrl">CTRL</string>
+    <string name="key_alt">ALT</string>
+    <string name="key_slash">/</string>
+    <string name="key_dash">-</string>
+    <string name="key_pipe">|</string>
+    <string name="key_home">HOME</string>
+    <string name="key_end">END</string>
+    <string name="key_up">▲</string>
+    <string name="key_down">▼</string>
+    <string name="key_left">◀</string>
+    <string name="key_right">▶</string>
+    <string name="session_new">New session</string>
+    <string name="session_close">Close session</string>
+    <string name="action_paste">Paste</string>
+</resources>

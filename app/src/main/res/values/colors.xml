@@ -1,0 +1,9 @@
+<resources>
+    <color name="terminal_background">#0D1117</color>
+    <color name="terminal_foreground">#39FF14</color>
+    <color name="accent_green">#39FF14</color>
+    <color name="key_bg">#1C2128</color>
+    <color name="key_bg_active">#2EA043</color>
+    <color name="key_fg">#C9D1D9</color>
+    <color name="status_bar">#0A0E12</color>
+</resources>
