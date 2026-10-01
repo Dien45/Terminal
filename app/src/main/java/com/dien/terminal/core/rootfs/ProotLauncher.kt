@@ -43,7 +43,17 @@ class ProotLauncher(private val context: Context, private val rootfsManager: Roo
         return arrayOf(
             "PROOT_TMP_DIR=${tmp.absolutePath}",
             "PROOT_L2S_DIR=${l2s.absolutePath}",
-            "TMPDIR=${tmp.absolutePath}"
+            "TMPDIR=${tmp.absolutePath}",
+            // proot's seccomp-accelerated ptrace fast path (PTRACE_SEIZE +
+            // PTRACE_O_TRACESECCOMP) is rejected by many device kernels/security
+            // policies (notably Samsung/Knox-hardened ones), which kills proot
+            // immediately with SIGSYS (signal 31, i.e. shell exit code 159) the
+            // moment it tries to trace anything. Falling back to proot's classic
+            // syscall-by-syscall ptrace mode via PROOT_NO_SECCOMP=1 is the
+            // standard, widely documented fix (see termux/proot and AnLinux's
+            // own troubleshooting docs) and works on far more devices, at the
+            // cost of slightly slower syscall interception.
+            "PROOT_NO_SECCOMP=1"
         )
     }
 
