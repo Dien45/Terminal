@@ -203,21 +203,26 @@ class RootfsManager(private val context: Context) {
             TarArchiveInputStream(gz).use { tar ->
                 var entry: TarArchiveEntry? = tar.nextTarEntry
                 while (entry != null) {
-                    val outFile = File(destDir, entry.name)
+                    // Bind to a local val: `entry` is a `var` reassigned at the bottom of this
+                    // loop, so the Kotlin compiler refuses to smart-cast it to non-null once
+                    // it's referenced inside a lambda (e.g. runCatching {} below), since a `var`
+                    // could in principle be mutated by a "changing closure" before the lambda runs.
+                    val currentEntry = entry
+                    val outFile = File(destDir, currentEntry.name)
                     if (!outFile.canonicalPath.startsWith(destDir.canonicalPath)) {
                         entry = tar.nextTarEntry
                         continue // zip-slip guard
                     }
                     when {
-                        entry.isDirectory -> {
+                        currentEntry.isDirectory -> {
                             outFile.mkdirs()
-                            applyTarMode(outFile, entry.mode)
+                            applyTarMode(outFile, currentEntry.mode)
                         }
-                        entry.isSymbolicLink -> {
+                        currentEntry.isSymbolicLink -> {
                             outFile.parentFile?.mkdirs()
                             // android.system.Os works down to API 21, unlike java.nio.file.Files
                             // (API 26+), which would crash on the PRD's minSdk 24 devices.
-                            runCatching { android.system.Os.symlink(entry.linkName, outFile.absolutePath) }
+                            runCatching { android.system.Os.symlink(currentEntry.linkName, outFile.absolutePath) }
                         }
                         else -> {
                             outFile.parentFile?.mkdirs()
@@ -226,7 +231,7 @@ class RootfsManager(private val context: Context) {
                             // executable bit from the tar entry, otherwise proot's exec into
                             // the rootfs fails immediately - FileOutputStream alone creates
                             // files without any exec permission.
-                            applyTarMode(outFile, entry.mode)
+                            applyTarMode(outFile, currentEntry.mode)
                         }
                     }
                     entryCount++

@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Terminal"
         android:usesCleartextTraffic="false"
-        android:extractNativeLibs="true"
         android:name=".App">
 
         <activity
