@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- System info card (FR-2) -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/DashboardCard">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dashboard_system_info"
+                        android:textColor="@color/primary_blue"
+                        android:textStyle="bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/info_cpu"
+                        style="@style/DashboardInfoLine" />
+
+                    <TextView
+                        android:id="@+id/info_ram"
+                        style="@style/DashboardInfoLine" />
+
+                    <TextView
+                        android:id="@+id/info_disk"
+                        style="@style/DashboardInfoLine" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Maintenance (FR-5 / FR-6) -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/DashboardCard">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dashboard_maintenance"
+                        android:textColor="@color/primary_blue"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button android:id="@+id/btn_update" style="@style/DashboardActionButton" android:text="@string/btn_update" />
+                        <Button android:id="@+id/btn_upgrade" style="@style/DashboardActionButton" android:text="@string/btn_upgrade" />
+                        <Button android:id="@+id/btn_fix" style="@style/DashboardActionButton" android:text="@string/btn_fix" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/maintenance_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        android:progressTint="@color/primary_blue" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Backup / Restore (FR-7/8/9) -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/DashboardCard">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dashboard_backup_restore"
+                        android:textColor="@color/primary_blue"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button android:id="@+id/btn_backup" style="@style/DashboardActionButton" android:text="@string/btn_backup" />
+                        <Button android:id="@+id/btn_restore" style="@style/DashboardActionButton" android:text="@string/btn_restore" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Package search (FR-4) -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/DashboardCard">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dashboard_package_search"
+                        android:textColor="@color/primary_blue"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/search_input"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/hint_search_package"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text"
+                            android:singleLine="true" />
+
+                        <ImageButton
+                            android:id="@+id/btn_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_search"
+                            android:contentDescription="@null"
+                            app:tint="@color/primary_blue" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/search_progress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="gone"
+                        android:layout_marginTop="8dp"
+                        android:progressTint="@color/primary_blue" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/search_results"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <Button
+                android:id="@+id/btn_view_logs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_view_logs"
+                android:textColor="@color/primary_blue"
+                android:backgroundTint="@color/primary_blue_light" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

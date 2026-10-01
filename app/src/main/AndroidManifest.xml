@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Terminal"
-        android:usesCleartextTraffic="false">
+        android:usesCleartextTraffic="false"
+        android:extractNativeLibs="true"
+        android:name=".App">
 
         <activity
             android:name=".MainActivity"
@@ -18,12 +24,30 @@
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden|uiMode"
             android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.Terminal.NoActionBar">
+            android:theme="@style/Theme.Terminal">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.logs.LogListActivity"
+            android:exported="false"
+            android:label="@string/log_viewer_title"
+            android:theme="@style/Theme.Terminal" />
+
+        <activity
+            android:name=".ui.logs.LogDetailActivity"
+            android:exported="false"
+            android:label="@string/log_detail_title"
+            android:theme="@style/Theme.Terminal" />
+
+        <service
+            android:name=".core.backup.BackupRestoreService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
     </application>
 
 </manifest>

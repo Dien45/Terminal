@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      PROOT_RELEASE: uls-dbbf7a2-r1
+      PROOT_REPO: ItsPhysip/uls-proot
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,6 +30,28 @@ jobs:
           echo "ANDROID_HOME=$ANDROID_HOME"
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0" > /dev/null || true
+
+      - name: Fetch and verify static proot binaries (FR-1)
+        run: |
+          set -euo pipefail
+          BASE="https://github.com/${PROOT_REPO}/releases/download/${PROOT_RELEASE}"
+          curl -sL -o SHA256SUMS "$BASE/SHA256SUMS"
+          cat SHA256SUMS
+          mkdir -p app/src/main/jniLibs/arm64-v8a app/src/main/jniLibs/armeabi-v7a app/src/main/jniLibs/x86_64
+
+          curl -sL -o proot-aarch64 "$BASE/proot-aarch64"
+          curl -sL -o proot-armv7   "$BASE/proot-armv7"
+          curl -sL -o proot-x86_64  "$BASE/proot-x86_64"
+
+          sha256sum -c <(grep aarch64 SHA256SUMS)
+          sha256sum -c <(grep armv7 SHA256SUMS)
+          sha256sum -c <(grep x86_64 SHA256SUMS)
+
+          cp proot-aarch64 app/src/main/jniLibs/arm64-v8a/libproot.so
+          cp proot-armv7   app/src/main/jniLibs/armeabi-v7a/libproot.so
+          cp proot-x86_64  app/src/main/jniLibs/x86_64/libproot.so
+          chmod 755 app/src/main/jniLibs/*/libproot.so
+          ls -la app/src/main/jniLibs/*/
 
       - name: Cache Gradle
         uses: actions/cache@v4
@@ -59,6 +84,10 @@ jobs:
             Automatic debug build from commit ${{ github.sha }}.
             Download `app-debug.apk` below and install it on your Android device
             (enable "Install unknown apps" for your browser/file manager first).
+
+            NOTE: `proot` support has been built/tested on arm64 only by its
+            upstream project so far. armv7/x86_64 devices may need further
+            testing - please report issues.
           files: app/build/outputs/apk/debug/*.apk
           draft: false
           prerelease: true

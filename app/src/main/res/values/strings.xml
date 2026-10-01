@@ -1,5 +1,12 @@
 <resources>
-    <string name="app_name">Terminal</string>
+    <string name="app_name">Terminal Alpine</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_terminal">Terminal</string>
+    <string name="nav_settings">Setting</string>
+
+    <!-- Terminal extra keys -->
     <string name="key_esc">ESC</string>
     <string name="key_tab">TAB</string>
     <string name="key_ctrl">CTRL</string>
@@ -9,11 +16,41 @@
     <string name="key_pipe">|</string>
     <string name="key_home">HOME</string>
     <string name="key_end">END</string>
-    <string name="key_up">▲</string>
-    <string name="key_down">▼</string>
-    <string name="key_left">◀</string>
-    <string name="key_right">▶</string>
-    <string name="session_new">New session</string>
-    <string name="session_close">Close session</string>
     <string name="action_paste">Paste</string>
+
+    <!-- Setup -->
+    <string name="setup_title">Menyiapkan Alpine Linux</string>
+    <string name="setup_retry">Coba Lagi</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_system_info">Info Sistem</string>
+    <string name="dashboard_cpu">CPU</string>
+    <string name="dashboard_ram">RAM</string>
+    <string name="dashboard_disk">Disk</string>
+    <string name="dashboard_maintenance">Pemeliharaan Sistem</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_upgrade">Upgrade</string>
+    <string name="btn_fix">Fix</string>
+    <string name="dashboard_backup_restore">Backup &amp; Restore</string>
+    <string name="btn_backup">Backup</string>
+    <string name="btn_restore">Restore</string>
+    <string name="dashboard_package_search">Cari Paket</string>
+    <string name="hint_search_package">Nama paket, mis. curl</string>
+    <string name="btn_install">Install</string>
+    <string name="btn_view_logs">Lihat Log</string>
+
+    <!-- Settings -->
+    <string name="settings_terminal_font_size">Ukuran Font Terminal</string>
+    <string name="settings_accent_color">Warna Aksen</string>
+    <string name="settings_log_retention">Retensi Log (hari)</string>
+    <string name="settings_reset_rootfs">Reset Rootfs</string>
+    <string name="settings_reset_rootfs_desc">Menghapus seluruh sistem Alpine dan mengunduh ulang dari awal</string>
+    <string name="settings_export_logs">Ekspor Semua Log</string>
+    <string name="settings_clear_logs">Hapus Semua Log</string>
+
+    <!-- Logs -->
+    <string name="log_viewer_title">Log Sistem</string>
+    <string name="log_detail_title">Detail Log</string>
+    <string name="action_open_log">Buka Log</string>
+    <string name="log_empty">Belum ada aktivitas tercatat</string>
 </resources>

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.kapt'
 }
 
 android {
@@ -55,9 +56,22 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.fragment:fragment-ktx:1.8.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.documentfile:documentfile:1.0.1'
+    implementation 'androidx.preference:preference-ktx:1.2.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1'
+    implementation 'org.apache.commons:commons-compress:1.26.2'
 
-    // Real terminal emulation + PTY-backed shell session (same engine used by Termux).
-    // Pulled from JitPack, pinned to a specific commit of termux/termux-app for reproducibility.
+    // Room for the operation log database (install/update/upgrade/fix/backup/restore history).
+    implementation 'androidx.room:room-runtime:2.6.1'
+    implementation 'androidx.room:room-ktx:2.6.1'
+    kapt 'androidx.room:room-compiler:2.6.1'
+
+    // Real terminal emulation (same engine used by Termux) rendering the proot/Alpine session.
     implementation 'com.termux.termux-app:terminal-view:5b657c6adf'
     implementation 'com.termux.termux-app:terminal-emulator:5b657c6adf'
 }

@@ -1,9 +1,25 @@
 <resources>
+    <!-- Minimalist Blue-White theme per PRD -->
+    <color name="primary_blue">#1565C0</color>
+    <color name="primary_blue_dark">#0D47A1</color>
+    <color name="primary_blue_light">#E3F2FD</color>
+    <color name="accent_blue">#2196F3</color>
+    <color name="surface_white">#FFFFFF</color>
+    <color name="background_white">#F5F8FC</color>
+    <color name="text_primary">#102A43</color>
+    <color name="text_secondary">#5C7389</color>
+    <color name="divider">#DCE6F0</color>
+
+    <!-- Error / warning highlight colors used in the Log Viewer (FR-13) -->
+    <color name="log_error">#D32F2F</color>
+    <color name="log_warning">#F57C00</color>
+    <color name="log_success">#2E7D32</color>
+
+    <!-- Terminal surface stays dark for readability regardless of app theme -->
     <color name="terminal_background">#0D1117</color>
-    <color name="terminal_foreground">#39FF14</color>
-    <color name="accent_green">#39FF14</color>
-    <color name="key_bg">#1C2128</color>
-    <color name="key_bg_active">#2EA043</color>
-    <color name="key_fg">#C9D1D9</color>
-    <color name="status_bar">#0A0E12</color>
+    <color name="terminal_foreground">#D8E6F5</color>
+    <color name="key_bg">#13233B</color>
+    <color name="key_bg_active">#1565C0</color>
+    <color name="key_fg">#E3F2FD</color>
+    <color name="status_bar">#0D47A1</color>
 </resources>

@@ -12,33 +12,33 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primary_blue"
         app:titleTextColor="@color/surface_white"
+        app:navigationIcon="@drawable/ic_back"
         app:theme="@style/Theme.Terminal.Toolbar" />
 
-    <FrameLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <include
-            android:id="@+id/setup_overlay"
-            layout="@layout/view_setup_progress" />
-
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone" />
-    </FrameLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav"
+    <TextView
+        android:id="@+id/detail_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface_white"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:menu="@menu/bottom_nav_menu"
-        android:visibility="gone" />
+        android:padding="12dp"
+        android:background="@color/primary_blue_light"
+        android:textColor="@color/text_primary"
+        android:textSize="13sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/terminal_background">
+
+        <TextView
+            android:id="@+id/detail_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/terminal_foreground"
+            android:textSize="12sp"
+            android:textIsSelectable="true" />
+    </ScrollView>
 
 </LinearLayout>
