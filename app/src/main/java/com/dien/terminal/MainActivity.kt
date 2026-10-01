@@ -274,7 +274,5 @@ class MainActivity : AppCompatActivity(), TerminalSessionClient, TerminalViewCli
 
     override fun onTerminalCursorStateChange(state: Boolean) {}
 
-    override fun setTerminalShellPid(session: TerminalSession, pid: Int) {}
-
     override fun getTerminalCursorStyle(): Int? = TerminalEmulator.TERMINAL_CURSOR_STYLE_BLOCK
 }
